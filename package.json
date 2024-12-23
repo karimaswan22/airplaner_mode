@@ -1,0 +1,17 @@
+{
+  "name": "com.abdo.airplane",
+  "version": "1.0.0",
+  "description": "",
+  "cordova": {
+    "id": "com.abdo.airplane",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.abdo.airplane" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>airplaner</name>
+    <js-module name="airplaner" src="www/airplaner.js">
+        <clobbers target="cordova.plugins.airplaner" />
+    </js-module>
+
+
+    <platform name="android">
+
+
+       <config-file target="config.xml" parent="/*">
+            <feature name="airplaner">
+                <param name="android-package" value="com.abdo.airplane.airplaner" />
+            </feature>
+        </config-file>
+
+
+<source-file src="src/android/airplaner.java" target-dir="src/com/abdo/airplaner" />
+
+
+
+<config-file target="AndroidManifest.xml" parent="/*"  android:versionCode="1"
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:tools="http://schemas.android.com/tools" >
+        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+        <uses-permission android:name="android.permission.NETWORK_AIRPLANE_MODE" />
+        <uses-permission android:name="android.permission.NETWORK_SETTINGS" />
+        <uses-permission android:name="android.permission.NETWORK_SETUP_WIZARD" />
+        <uses-permission android:name="android.permission.NETWORK_STACK" />
+        <uses-permission android:name="android.permission.MAINLINE_NETWORK_STACK" />
+         <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+      <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
+    </config-file>
+
+
+<config-file target="AndroidManifest.xml" parent="/manifest/application">
+<provider
+    android:name="rikka.shizuku.ShizukuProvider"
+    android:authorities="${applicationId}.shizuku"
+    android:multiprocess="false"
+    android:enabled="true"
+    android:exported="true"
+    android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" ></provider>
+
+</config-file>
+
+</platform>
+</plugin>
+
+
+
+
+
+
+
+
+
+
