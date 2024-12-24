@@ -25,19 +25,21 @@ public class airplaner extends CordovaPlugin {
     private static ShizukuRemoteProcess mProcess = null;
     private static String mDir = "/";
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        this.callbackContext = callbackContext;
-        if (action.equals("toggleAirplaneMode")) {
-            toggleAirplaneMode();
-            return true;
-        }
-        return false;
-    }
+@Override
+public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    this.callbackContext = callbackContext;
 
+    if (action.equals("toggleAirplaneMode")) {
+        toggleAirplaneMode();
+        return true;
+    } else {
+        clearAppCache();
+        return true;
+    }
+}
     private void toggleAirplaneMode() {
         // Turn off Airplane Mode and clear cache before toggling
-        clearAppCache();
+   
 
         // Toggle Airplane Mode
         setAirplaneMode(true);
@@ -69,26 +71,26 @@ public class airplaner extends CordovaPlugin {
         }
     }
 
-    private void clearAppCache() {
+     private void clearAppCache() {
         try {
-            // // Clear WebView cache
-            // cordova.getActivity().runOnUiThread(new Runnable() {
-            //     @Override
-            //     public void run() {
-            //         webView.clearCache(true);
-            //     }
-            // });
+            // Clear WebView cache
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    webView.clearCache(true);
+                }
+            });
 
             // Clear cookies
-            // CookieManager.getInstance().removeAllCookies(null);
-            // CookieManager.getInstance().flush();
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
 
             // Clear WebStorage (localStorage, sessionStorage)
            // WebStorage.getInstance().deleteAllData();
 
             // Clear app cache
-            // Context context = cordova.getActivity().getApplicationContext();
-            // context.getCacheDir().delete();
+            Context context = cordova.getActivity().getApplicationContext();
+            context.getCacheDir().delete();
 
             Log.i(TAG, "App cache cleared successfully.");
         } catch (Exception e) {
